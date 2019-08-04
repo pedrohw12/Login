@@ -88,7 +88,9 @@ const styles = StyleSheet.create({
   inputModall: {
     backgroundColor:'white',
     padding:10,
-    marginBottom:10
+    marginBottom:10,
+    borderwidth:2,
+    borderColor:'black'
   },
   textoModall: {
     fontSize:25,
