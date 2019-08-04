@@ -1,0 +1,102 @@
+import React, { Component } from 'react';
+import { View, Text, StyleSheet, TextInput, Button, Modal } from 'react-native';
+
+export default class App extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {modalVisible:false}
+
+    this.abrir = this.abrir.bind(this);
+    this.fechar = this.fechar.bind(this);
+  }
+
+  abrir() {
+    let s = this.state;
+    s.modalVisible = true;
+    this.setState(s);
+  }
+
+  fechar() {
+    let s = this.state;
+    s.modalVisible = false;
+    this.setState(s);
+  }
+
+
+  render() {
+    return(
+      <View style={styles.container}>
+        <Text style={styles.texto}>Usuário</Text>
+        <TextInput style={styles.input} placeholder='usuário'/>
+
+        <Text style={styles.texto}>Senha</Text>
+        <TextInput style={styles.input} placeholder='senha' />
+        <Button style={styles.botao} title='Login' onPress={this.clicar}/>
+        <View style={styles.botao}>
+
+          <Modal animationType='slide' visible={this.state.modalVisible}>
+            <View style={{flex:1, backgroundColor:'purple'}}>
+            <View style={styles.modalContainer}>
+              <Text style={styles.textoModall}> Usuário </Text>
+              <TextInput style={styles.inputModall} placeholder='Usuário' />
+
+              <Text style={styles.textoModall}> Senha </Text>
+              <TextInput style={styles.inputModall} placeholder='Senha' />
+              <Button title='Login' onPress={ ()=> {} } />
+            </View>
+            <View style={styles.botaoModal}>
+              <Button title='fechar'  onPress={this.fechar}/>
+            </View>
+            </View>
+          </Modal>
+          <Button title='Cadastrar' onPress={this.abrir} />
+        </View>
+      </View>
+    );
+  }
+}
+
+const styles = StyleSheet.create({
+  container: {
+    flex:1,
+    padding:40,
+    backgroundColor:'#FFDE03'
+  },
+  input: {
+    borderWidth:2,
+    borderColor:'black',
+    padding:10,
+    marginBottom:10,
+    backgroundColor:'white'
+  },
+  texto: {
+    fontWeight:'bold',
+    fontSize:25
+  },
+  botao: {
+    flex:1,
+    justifyContent:'flex-end'
+  },
+  modal: {
+    flex:1,
+    justifyContent:'flex-end'
+  },
+  modalContainer: {
+    flex:1,
+    padding:40,
+  },
+  inputModall: {
+    backgroundColor:'white',
+    padding:10,
+    marginBottom:10
+  },
+  textoModall: {
+    fontSize:25,
+    color:'yellow',
+    fontWeight:'bold'
+  },
+  botaoModal: {
+    flex:1,
+    justifyContent:'flex-end'
+  }
+});
